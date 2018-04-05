@@ -1,0 +1,45 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "scss/dollar-variable-pattern": "[a-z]",
+    "scss/selector-no-redundant-nesting-selector": true,
+    "color-no-invalid-hex": true,
+    "font-family-no-duplicate-names": true,
+    "function-calc-no-unspaced-operator": true,
+    "shorthand-property-no-redundant-values": true,
+    "value-no-vendor-prefix": true,
+    "declaration-no-important": true,
+    "declaration-property-unit-whitelist": {
+      "font-size": ["px", "em", "%"],
+      "/^animation/": ["s"],
+      "line-height": []
+    },
+    "declaration-block-single-line-max-declarations": 1,
+    "selector-max-class": 5,
+    "selector-max-empty-lines": 0,
+    "selector-max-id": 0,
+    "string-quotes": "single",
+    "number-leading-zero": "always",
+    "length-zero-no-unit": true,
+    "unit-case": "lower",
+    "value-keyword-case": "lower",
+    "value-list-comma-space-after": "always",
+    "property-case": 'lower',
+    "block-closing-brace-empty-line-before": "never",
+    "indentation": 2,
+    "max-empty-lines": 1,
+    "no-eol-whitespace": true,
+    "max-nesting-depth": 4,
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-no-unknown": true,
+    "selector-max-universal": 1,
+    "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
+    "scss/at-else-closing-brace-space-after": "always-intermediate",
+    "scss/at-else-empty-line-before": "never",
+    "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
+    "scss/at-if-closing-brace-space-after": "always-intermediate",
+    "selector-class-pattern": "^(?!js-).*"
+  }
+}
