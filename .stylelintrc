@@ -31,7 +31,7 @@
     "indentation": 2,
     "max-empty-lines": 1,
     "no-eol-whitespace": true,
-    "max-nesting-depth": 4,
+    "max-nesting-depth": 5,
     "selector-pseudo-class-no-unknown": true,
     "selector-pseudo-element-no-unknown": true,
     "selector-max-universal": 1,

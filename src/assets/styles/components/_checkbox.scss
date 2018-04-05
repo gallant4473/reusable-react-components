@@ -1,0 +1,56 @@
+.reusable-checkbox {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  &-item {
+    margin: 5px 10px;
+    input[type='checkbox'] {
+      opacity: 0;
+      position: absolute;
+      &:checked + {
+        .label {
+          color: $color-black;
+          &:before {
+            color: $color-white;
+            border-style: solid;
+            width: 10px;
+            height: 5px;
+            border-width: 0.12em 0.12em 0 0;
+            content: '';
+            display: inline-block;
+            left: 3px;
+            position: absolute;
+            top: 11px;
+            transform: rotate(135deg);
+            z-index: 2;
+          }
+          &:after {
+            background: $color-primary;
+            border-color: $color-primary;
+          }
+        }
+      }
+    }
+    .label {
+      position: relative;
+      padding: 8px 10px 5px 25px;
+      display: block;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border: 1px solid $color-grey-dark;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        top: 8px;
+        border-radius: 2px;
+      }
+    }
+  }
+}
