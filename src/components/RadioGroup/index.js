@@ -30,13 +30,14 @@ class RadioGroup extends Component {
 
 RadioGroup.propTypes = {
   options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
-  active: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  active: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
   inline: PropTypes.bool
 }
 
 RadioGroup.defaultProps = {
-  inline: false
+  inline: false,
+  active: null
 }
 
 export default RadioGroup
