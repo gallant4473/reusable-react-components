@@ -18,8 +18,8 @@ class CheckboxGroup extends Component {
   renderOptions () {
     return this.props.options.map((item, i) => (
       <li key={i} className={this.props.inline ? 'inline reusable-checkbox-item' : 'reusable-checkbox-item'} >
-        <input id={`${item}_${i}`} name={item} type='checkbox' checked={this.state.selected[item]} onChange={this.onChange} />
-        <label htmlFor={`${item}_${i}`} className='label' >
+        <input id={`checkbox_${item}_${i}`} name={item} type='checkbox' checked={this.state.selected[item]} onChange={this.onChange} />
+        <label htmlFor={`checkbox_${item}_${i}`} className='label' >
           {item}
         </label>
       </li>
