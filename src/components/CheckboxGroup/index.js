@@ -6,19 +6,19 @@ class CheckboxGroup extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      selected: checkSelected(this.props.options, this.props.selected)
+      active: checkSelected(this.props.options, this.props.active)
     }
     this.onChange = this.onChange.bind(this)
   }
   onChange (event) {
-    const { selected } = this.state
-    selected[event.target.name] = event.target.checked
-    this.props.onChange(getSelected(selected))
+    const { active } = this.state
+    active[event.target.name] = event.target.checked
+    this.props.onChange(getSelected(active))
   }
   renderOptions () {
     return this.props.options.map((item, i) => (
       <li key={i} className={this.props.inline ? 'inline reusable-checkbox-item' : 'reusable-checkbox-item'} >
-        <input id={`checkbox_${item}_${i}`} name={item} type='checkbox' checked={this.state.selected[item]} onChange={this.onChange} />
+        <input id={`checkbox_${item}_${i}`} name={item} type='checkbox' checked={this.state.active[item]} onChange={this.onChange} />
         <label htmlFor={`checkbox_${item}_${i}`} className='label' >
           {item}
         </label>
@@ -36,7 +36,7 @@ class CheckboxGroup extends Component {
 
 CheckboxGroup.propTypes = {
   options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
-  selected: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
+  active: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
   onChange: PropTypes.func.isRequired,
   inline: PropTypes.bool
 }
