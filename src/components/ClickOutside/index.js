@@ -48,5 +48,5 @@ ClickOutside.propTypes = {
 }
 
 ClickOutside.defaultProps = {
-  children: null || []
+  children: null
 }

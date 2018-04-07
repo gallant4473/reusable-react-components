@@ -56,7 +56,7 @@ class Dropdown extends Component {
   }
   render () {
     return (
-      <div style={{ display: 'inline-block' }} >
+      <div className='inline' >
         <ClickOutside onClickOutside={() => this.setState({ open: false })}>
           <div className='reusable-dropdown'>
             <div className='reusable-dropdown-box'>
