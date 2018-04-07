@@ -68,6 +68,7 @@
   }
   &-container {
     max-height: 200px;
+    min-height: 150px;
     overflow: auto;
     position: absolute;
     top: 100%;
