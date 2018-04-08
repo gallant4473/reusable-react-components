@@ -1,5 +1,5 @@
 {
-  "name": "reusable-components",
+  "name": "reusable-react-components",
   "version": "0.1.0",
   "description": "Reusable components",
   "main": "build/index.js",
@@ -11,9 +11,18 @@
     "precommit": "npm run lint && npm run sass-lint"
   },
   "keywords": [
-    "Reusable"
+    "Reusable",
+    "Checkbox",
+    "Radiobutton",
+    "Dropdown",
+    "Dropdown Search",
+    "Multi select Dropdown",
+    "Multi select Dropdown search"
   ],
-  "author": "Kishore",
+  "author": {
+    "name": "Kv Kishore",
+    "email": "gallant4473@gmail.com"
+  },
   "license": "ISC",
   "peerDependencies": {
     "react": "^16.3.1"
@@ -50,5 +59,13 @@
     "stylelint": "^9.2.0",
     "stylelint-scss": "^3.0.0",
     "stylelint-webpack-plugin": "^0.10.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gallant4473/reusable-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gallant4473/reusable-components/issues"
+  },
+  "homepage": "https://github.com/gallant4473/reusable-components"
 }
