@@ -42,6 +42,13 @@
       border: 1px solid $color-grey-light-3;
       cursor: pointer;
       color: $color-grey-dark-3;
+      .reusable-search-icon {
+        position: absolute;
+        z-index: 1;
+        top: 15px;
+        right: 16px;
+        cursor: default;
+      }
       &-input {
         background-color: transparent;
         border: 0;
@@ -94,4 +101,31 @@
       }
     }
   }
+}
+
+.reusable-search-icon {
+  position:relative;
+  display:inline-block;
+  background: #fff;
+  border-radius: 30px;
+  height: 6px;
+  width: 6px;
+  border: 2px solid #888;
+  &:after {
+    content: '';
+    height: 2px;
+    width: 6px;
+    background: #888;
+    position:absolute;
+    top:7px;
+    left:5px;
+    transform: rotate(45deg);
+  }
+}
+.reusable-dropdown-no-data-found {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

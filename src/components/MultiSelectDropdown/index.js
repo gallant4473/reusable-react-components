@@ -15,10 +15,6 @@ class MultiSelectDropdown extends Component {
       open: !this.state.open
     })
   }
-  onSearchChange (e, value = []) {
-    e.stopPropagation()
-    this.props.onChange(Array.from(new Set([...this.props.active, ...value])))
-  }
   onChange (e, value = []) {
     e.stopPropagation()
     this.props.onChange(value)
@@ -39,6 +35,30 @@ class MultiSelectDropdown extends Component {
     })
   }
   renderItems () {
+    const {
+      minLength, searchOptions, onSearch, options
+    } = this.props
+    if (this.state.inputText.length > minLength && onSearch && searchOptions.length === 0) {
+      return (
+        <div className='reusable-dropdown-no-data-found' >
+          {this.props.noSearchDataText}
+        </div>
+      )
+    }
+    if (this.state.inputText.length <= minLength && options.length === 0) {
+      return (
+        <div className='reusable-dropdown-no-data-found' >
+          {this.props.noDataSearchText}
+        </div>
+      )
+    }
+    if (options.length === 0) {
+      return (
+        <div className='reusable-dropdown-no-data-found' >
+          {this.props.noDataText}
+        </div>
+      )
+    }
     return (
       <CheckboxGroup
         id={this.props.id}
@@ -56,7 +76,7 @@ class MultiSelectDropdown extends Component {
       return (
         <div className='reusable-ms-dropdown-box-search'>
           <input className='reusable-ms-dropdown-box-search-input' placeholder={this.props.placeholder} type='text' value={this.state.inputText} onChange={e => this.onTextChange(e)} />
-          {this.state.inputText.length > 0 ? <div role='presentation' onClick={e => this.onTextChange(e, '')} className='reusable-ms-dropdown-box-clear'>&#10005;</div> : null}
+          {this.state.inputText.length > 0 ? <div role='presentation' onClick={e => this.onTextChange(e, '')} className='reusable-ms-dropdown-box-clear'>&#10005;</div> : <div className='reusable-search-icon' />}
         </div>
       )
     }
@@ -97,7 +117,10 @@ MultiSelectDropdown.propTypes = {
   placeholder: PropTypes.string,
   title: PropTypes.string,
   minLength: PropTypes.number,
-  searchOptions: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string]))
+  searchOptions: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  noSearchDataText: PropTypes.string,
+  noDataText: PropTypes.string,
+  noDataSearchText: PropTypes.string
 }
 
 MultiSelectDropdown.defaultProps = {
@@ -107,7 +130,10 @@ MultiSelectDropdown.defaultProps = {
   title: 'Select',
   placeholder: 'Search',
   minLength: 0,
-  searchOptions: []
+  searchOptions: [],
+  noSearchDataText: 'No search data found',
+  noDataText: 'No data found',
+  noDataSearchText: 'Search for options'
 }
 
 export default MultiSelectDropdown

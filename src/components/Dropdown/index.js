@@ -43,7 +43,7 @@ class Dropdown extends Component {
       return (
         <div className='reusable-dropdown-box-search' >
           <input className='reusable-dropdown-box-search-input' placeholder={this.props.placeholder} type='text' value={this.state.inputText} onChange={e => this.onTextChange(e)} />
-          {this.state.inputText.length > 0 ? <div role='presentation' onClick={e => this.onTextChange(e, '')} className='reusable-dropdown-box-clear'>&#10005;</div> : null}
+          {this.state.inputText.length > 0 ? <div role='presentation' onClick={e => this.onTextChange(e, '')} className='reusable-dropdown-box-clear'>&#10005;</div> : <div className='reusable-search-icon' />}
         </div>
       )
     }
