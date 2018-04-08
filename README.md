@@ -6,4 +6,5 @@ Contains group of common components (Checkbox, Radiobutton, Dropdown, Multiselec
 
 ```
 npm install --save reusable-react-components  or yarn add reusable-react-components
+import css from reusable-react-components/build/main.css to apply all the styles
 ```
