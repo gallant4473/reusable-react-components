@@ -45,7 +45,7 @@ class MultiSelectDropdown extends Component {
         </div>
       )
     }
-    if (this.state.inputText.length <= minLength && options.length === 0) {
+    if (this.state.inputText.length <= minLength && options.length === 0 && onSearch) {
       return (
         <div className='reusable-dropdown-no-data-found' >
           {this.props.noDataSearchText}

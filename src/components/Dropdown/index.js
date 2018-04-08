@@ -29,10 +29,34 @@ class Dropdown extends Component {
     })
   }
   renderItems () {
-    if ((this.state.inputText.length > this.props.minLength) && this.props.onSearch) {
-      return this.props.searchOptions.map((item, i) => (
+    const {
+      minLength, searchOptions, onSearch, options
+    } = this.props
+    if (this.state.inputText.length <= minLength && options.length === 0 && onSearch) {
+      return (
+        <div className='reusable-dropdown-no-data-found' >
+          {this.props.noDataSearchText}
+        </div>
+      )
+    }
+    if ((this.state.inputText.length > minLength) && onSearch) {
+      if (searchOptions.length === 0) {
+        return (
+          <div className='reusable-dropdown-no-data-found' >
+            {this.props.noSearchDataText}
+          </div>
+        )
+      }
+      return searchOptions.map((item, i) => (
         <li key={i} className='reusable-dropdown-container-list-item' role='presentation' onClick={e => this.onChange(e, item)} >{item}</li>
       ))
+    }
+    if (options.length === 0) {
+      return (
+        <div className='reusable-dropdown-no-data-found' >
+          {this.props.noDataText}
+        </div>
+      )
     }
     return this.props.options.map((item, i) => (
       <li key={i} className='reusable-dropdown-container-list-item' role='presentation' onClick={e => this.onChange(e, item)} >{item}</li>
@@ -85,7 +109,10 @@ Dropdown.propTypes = {
   placeholder: PropTypes.string,
   onSearch: PropTypes.func,
   searchOptions: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-  minLength: PropTypes.number
+  minLength: PropTypes.number,
+  noSearchDataText: PropTypes.string,
+  noDataText: PropTypes.string,
+  noDataSearchText: PropTypes.string
 }
 
 Dropdown.defaultProps = {
@@ -95,7 +122,10 @@ Dropdown.defaultProps = {
   placeholder: 'Search',
   searchOptions: [],
   onSearch: null,
-  minLength: 0
+  minLength: 0,
+  noSearchDataText: 'No search data found',
+  noDataText: 'No data found',
+  noDataSearchText: 'Search for options'
 }
 
 export default Dropdown
