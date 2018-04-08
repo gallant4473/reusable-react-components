@@ -1,6 +1,6 @@
 {
   "name": "reusable-react-components",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Reusable react components",
   "main": "build/index.js",
   "scripts": {
