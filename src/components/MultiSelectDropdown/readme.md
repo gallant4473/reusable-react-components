@@ -1,4 +1,4 @@
-### How to use Dropdown component
+### How to use Multi Select Dropdown component
 ```js
 // Simple Multi select dropdown example
 import React, { Component } from 'react'
