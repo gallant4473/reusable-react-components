@@ -5,31 +5,33 @@
 ###### Contains group of common components (Checkbox, Radiobutton, Dropdown, Multiselect dropdown and many more to come)
 
 ### How to Install as an NPM module
-###### yarn add reusable-react-components
-###### or
-###### npm install reusable-react-components
-
+```shell
+yarn add reusable-react-components
+or
+npm install reusable-react-components
+```
 **Import CSS from reusable-react-components/build/main.css**
 
 ### How to install locally
-1. git clone https://github.com/gallant4473/reusable-react-components.git or download zip from https://github.com/gallant4473/reusable-react-components
-2. cd **reusable-react-components**
-3. npm install or yarn install
-4. npm run build or yarn build
-5. yarn link or npm link
-6. Open up the project you want to install, yarn link reusable-react-components or npm link reusable-react-components.
-7. import and use it.
-8. If you want to make changes in reusable-react-components, For continuous watching the changes yarn start or npm start in reusable-react-components.
-
+```
+git clone https://github.com/gallant4473/reusable-react-components.git or download zip from https://github.com/gallant4473/reusable-react-components
+cd **reusable-react-components**
+npm install or yarn install
+npm run build or yarn build
+yarn link or npm link
+Open up the project you want to install, yarn link reusable-react-components or npm link reusable-react-components.
+import and use it.
+If you want to make changes in reusable-react-components, For continuous watching the changes yarn start or npm start in reusable-react-components.
+```
 ### Checklist
 
 
-* [x] Checkbox group
-* [x] Radio group
-* [x] Dropdown
-* [x] Dropdown with search
-* [x] Multiselect dropdown
-* [x] Multiselect search dropdown
+* [x] [Checkbox group](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/CheckboxGroup)
+* [x] [Radio group](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/RadioGroup)
+* [x] [Dropdown](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/Dropdown)
+* [x] [Dropdown with search](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/Dropdown)
+* [x] [Multiselect dropdown](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/MultiSelectDropdown)
+* [x] [Multiselect search dropdown](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/MultiSelectDropdown)
 * [ ] Infinite scroll on body for list
 * [ ] Infinite scroll on div for list
 * [ ] Table
