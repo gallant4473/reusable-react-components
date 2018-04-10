@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ClickOutside } from '../../'
 
-const types = ['small', 'medium', 'large']
+const sizes = ['small', 'medium', 'large']
 
 class Modal extends Component {
   constructor (props) {
@@ -29,7 +29,7 @@ class Modal extends Component {
     }
   }
   render () {
-    const checkType = types.indexOf(this.props.type) > -1 ? types[types.indexOf(this.props.type)] : 'medium'
+    const checkSize = sizes.indexOf(this.props.size) > -1 ? sizes[sizes.indexOf(this.props.size)] : 'medium'
     const dialog = this.props.dialog ? 'reusable-modal-dialog' : ''
     return (
       <div>
@@ -38,7 +38,7 @@ class Modal extends Component {
           {
             this.state.open
             ? (
-              <div className={`reusable-modal reusable-modal-${checkType} ${dialog}`} >
+              <div className={`reusable-modal reusable-modal-${checkSize} ${dialog}`} >
                 <div className='reusable-modal-close' role='presentation' onClick={() => this.props.onClose(false)} >&#10005;</div>
                 {this.props.children}
               </div>
@@ -58,13 +58,13 @@ Modal.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  type: PropTypes.string,
+  size: PropTypes.string,
   dialog: PropTypes.bool
 }
 
 Modal.defaultProps = {
   children: null,
-  type: 'medium',
+  size: 'medium',
   dialog: false
 }
 export default Modal

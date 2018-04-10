@@ -32,11 +32,11 @@ If you want to make changes in reusable-react-components, For continuous watchin
 * [x] [Dropdown with search](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/Dropdown)
 * [x] [Multiselect dropdown](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/MultiSelectDropdown)
 * [x] [Multiselect search dropdown](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/MultiSelectDropdown)
+* [x] [Modal](https://github.com/gallant4473/reusable-react-components/blob/master/src/components/Modal)
 * [ ] Infinite scroll on body for list
 * [ ] Infinite scroll on div for list
 * [ ] Table
 * [ ] Grid
 * [ ] Accordion
 * [ ] Toggles
-* [ ] Modal
 * [ ] Tooltip
