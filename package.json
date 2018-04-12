@@ -24,7 +24,11 @@
     "Dropdown",
     "Dropdown Search",
     "Multi select Dropdown",
-    "Multi select Dropdown search"
+    "Multi select Dropdown search",
+    "Modal",
+    "React Modal",
+    "Lazy Load",
+    "Infinite scroll"
   ],
   "author": {
     "name": "Kv Kishore",
