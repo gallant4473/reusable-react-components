@@ -1,3 +1,5 @@
+### [Demo](https://gallant4473.github.io/docs/#/modal)
+
 ### How to use Modal component
 ```js
 import React, { Component } from 'react'

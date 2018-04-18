@@ -1,3 +1,5 @@
+### [Demo](https://gallant4473.github.io/docs/#/lazybody)
+
 ### How to use Lazy Load on Body component
 ```js
 import React, { Component } from 'react'

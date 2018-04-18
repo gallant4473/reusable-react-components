@@ -1,3 +1,5 @@
+### [Demo](https://gallant4473.github.io/docs/#/multiselect)
+
 ### How to use Multi Select Dropdown component
 ```js
 // Simple Multi select dropdown example

@@ -1,3 +1,5 @@
+### [Demo](https://gallant4473.github.io/docs/#/checkbox)
+
 ### How to use CheckboxGroup component
 ```js
 import React, { Component } from 'react'
