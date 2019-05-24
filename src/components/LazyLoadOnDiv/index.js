@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const LoaderComponent = () => (
-  <div className='reusable-loader' >
-    <div className='reusable-loader-item' />
+  <div className='reusable-lazyload-on-div' >
+    <div className='reusable-lazyload-on-div-item'>Loading...</div>
   </div>
 )
 
@@ -42,12 +42,15 @@ class LazyLoadOnDiv extends Component {
   }
 
   render () {
-    return (
-      <div id={this.props.id} onScroll={this.onScroll} style={{ height: this.props.height, overflowY: 'auto' }} >
-        {this.props.children}
-        {!this.state.loadMore ? this.props.loader : null}
-      </div>
-    )
+    if (this.props.id) {
+      return (
+        <div className={this.props.className} id={this.props.id} onScroll={this.onScroll} style={{ height: this.props.height, overflowY: 'auto' }} >
+          {this.props.children}
+          {!this.state.loadMore ? this.props.loader : null}
+        </div>
+      )
+    }
+    return null
   }
 }
 
@@ -61,14 +64,15 @@ LazyLoadOnDiv.propTypes = {
     PropTypes.node
   ]),
   loader: PropTypes.node,
-  height: PropTypes.number
+  height: PropTypes.number,
+  className: PropTypes.string,
 }
 
 LazyLoadOnDiv.defaultProps = {
   children: null,
-  footerHeight: 0,
   loader: <LoaderComponent />,
-  height: 300
+  height: 300,
+  className: ''
 }
 
 export default LazyLoadOnDiv

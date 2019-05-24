@@ -1,131 +1,317 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { ClickOutside } from '../../'
+import ClickOutside from '../ClickOutside'
+import { generateRandomString, newInstance } from '../../utils'
+
+const LoaderComponent = () => (
+  <div className='reusable-loader' >
+    <div className='reusable-loader-item'>Loading...</div>
+  </div>
+)
 
 class Dropdown extends Component {
+  static displayName = 'Dropdown'
+
   constructor (props) {
     super(props)
     this.state = {
       open: this.props.open,
-      inputText: ''
+      cursor: 0,
+      id: generateRandomString(),
+      input: '',
+      searchOptions: !this.props.onSearch ? [] : this.props.searchOptions
     }
   }
-  onChange (e, value = null) {
-    e.stopPropagation()
+
+  componentDidMount () {
+    const element = document.getElementById(this.state.id)
+    if (element) {
+      element.addEventListener('mousewheel', (e) => {
+        const delta = e.wheelDelta || -e.detail
+        this.scrollTop += (delta < 0 ? 1 : -1) * 10
+        e.preventDefault()
+      })
+      element.addEventListener('DOMMouseScroll',(e) => {
+        const delta = e.wheelDelta || -e.detail
+        this.scrollTop += (delta < 0 ? 1 : -1) * 10
+        e.preventDefault()
+      })
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.open !== this.props.open) {
+      const { open } = this.props
+      this.setState({
+        open
+      })
+    }
+    if (JSON.stringify(prevProps.searchOptions) !== JSON.stringify(this.props.searchOptions) && this.props.onSearch) {
+      this.setState({
+        searchOptions: newInstance(this.props.searchOptions)
+      })
+    }
+  }
+
+  onKeyPress = (e) => {
+    const { options, loading } = this.props
+    const { cursor, open, searchOptions } = this.state
+    if (!loading) {
+      let itemOptions = options
+      if (this.state.input.length > this.props.minLength) {
+        itemOptions = newInstance(searchOptions)
+      }
+      if (e.key === 'Enter' && itemOptions && Array.isArray(itemOptions) && itemOptions.length && this.state.open) {
+        this.onItemClick(itemOptions[cursor])
+      } else if (e.keyCode === 38 && cursor > 0 && open) {
+        this.setState({
+          cursor: cursor - 1
+        }, () => {
+          this.dropdown.scrollTop = this.dropdown.scrollTop - this.dropdown.children[cursor].clientHeight
+          this.stopBodyScroll()
+        })
+      } else if (e.keyCode === 40 && itemOptions && Array.isArray(itemOptions) && cursor < itemOptions.length - 1 && open) {
+        this.setState({
+          cursor: cursor + 1
+        }, () => {
+          this.stopBodyScroll()
+          this.dropdown.scrollTop = this.dropdown.scrollTop + this.dropdown.children[this.state.cursor].clientHeight
+        })
+      }
+    }
+    if (e.keyCode === 27) {
+      this.setState({
+        open: false,
+        cursor: 0,
+        input: ''
+      })
+    }
+  }
+
+  stopBodyScroll = () => {
+    window.addEventListener("keydown",(e) => {
+      if([38, 40].indexOf(e.keyCode) > -1 && this.state.open) {
+        e.preventDefault();
+      }
+    }, false);
+  }
+
+  onClick = (e) => {
+    e.preventDefault()
+    this.setState((prev) => ({
+      open: !prev.open
+    }))
+  }
+
+  onClickOutside = () => {
     this.setState({
       open: false,
-      inputText: ''
-    }, () => {
-      this.props.onChange(value)
+      cursor: 0,
+      input: ''
     })
   }
-  onTextChange (e, value) {
+
+  onTextInput = (e) => {
+    const searchOptions = []
+    const { onSearch, options, displayKey } = this.props
+    if (!onSearch) {
+      options.forEach(item => {
+        let text = ''
+        if (typeof item === 'number') {
+          text = `${item}`
+        } else if (typeof item === 'object') {
+          text = `${item[displayKey]}`
+        } else {
+          text = item
+        }
+        if (text.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1) {
+          searchOptions.push(item)
+        }
+      })
+    } else {
+      onSearch(e.target.value, options)
+    }
     this.setState({
-      inputText: value === '' ? value : e.target.value
-    }, () => {
-      if (this.state.inputText.length > this.props.minLength) {
-        this.props.onSearch(this.state.inputText)
-      }
+      input: e.target.value,
+      ...(!onSearch ? { searchOptions } : {}),
+      cursor: 0
     })
   }
+
+  onItemClick = (item) => {
+    const { onChange } = this.props
+    if (onChange) {
+      onChange(item)
+    }
+    setTimeout(() => {
+      this.setState({
+        open: false,
+        cursor: 0,
+        input: ''
+      })
+    }, 50)
+  }
+
+  onClear = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
+    this.onItemClick(null)
+  }
+
+  onSearchClear = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
+    this.setState({
+      input: '',
+      cursor: 0
+    })
+  }
+
   renderItems () {
-    const {
-      minLength, searchOptions, onSearch, options
-    } = this.props
-    if (this.state.inputText.length <= minLength && options.length === 0 && onSearch) {
+    const { active, options, displayKey, valueKey, loading } = this.props
+    if (loading) {
       return (
-        <div className='reusable-dropdown-no-data-found' >
-          {this.props.noDataSearchText}
-        </div>
+        <Fragment>
+          {this.props.loader}
+        </Fragment>
       )
     }
-    if ((this.state.inputText.length > minLength) && onSearch) {
-      if (searchOptions.length === 0) {
+    let itemOptions = options
+    if (this.state.input.length > this.props.minLength) {
+      itemOptions = this.state.searchOptions
+    }
+    if (Array.isArray(this.props.options)) {
+      if (!itemOptions.length) {
         return (
-          <div className='reusable-dropdown-no-data-found' >
-            {this.props.noSearchDataText}
+          <div className='reusable-no-data' >
+            {this.state.input.length > this.props.minLength ? this.props.noDataSearchMessage : this.props.noDataMessage}
           </div>
         )
       }
-      return searchOptions.map((item, i) => (
-        <li key={i} className='reusable-dropdown-container-list-item' role='presentation' onClick={e => this.onChange(e, item)} >{item}</li>
-      ))
+      return itemOptions.map((item, i) => {
+        if (typeof(item) === 'object' && !Array.isArray(item)) {
+          const checkActive = active !== null && active[valueKey] && active[valueKey] === item[this.props.valueKey]
+          return (
+            <button onClick={() => this.onItemClick(item)} key={generateRandomString()} className={`reusable-dropdown-container-list-item ${checkActive ? 'reusable-dropdown-container-list-item-active' : ''} ${i === this.state.cursor ? 'reusable-dropdown-container-list-item-cursor' : ''}`} >
+              {item[displayKey]}
+            </button>
+          )
+        }
+        return (
+          <button onClick={() => this.onItemClick(item)} key={generateRandomString()} className={`reusable-dropdown-container-list-item ${active === item ? 'reusable-dropdown-container-list-item-active' : ''} ${i === this.state.cursor ? 'reusable-dropdown-container-list-item-cursor' : ''}`} >
+            {item}
+          </button>
+        )
+      })
     }
-    if (options.length === 0) {
-      return (
-        <div className='reusable-dropdown-no-data-found' >
-          {this.props.noDataText}
-        </div>
-      )
-    }
-    return this.props.options.map((item, i) => (
-      <li key={i} className='reusable-dropdown-container-list-item' role='presentation' onClick={e => this.onChange(e, item)} >{item}</li>
-    ))
+    return null
   }
+
   renderBox () {
-    if (this.state.open && this.props.onSearch) {
+    const { active, title, displayKey, search } = this.props
+    const checkActive = typeof active !== 'undefined' && active !== null
+    let dropdownTitle = title
+    if (checkActive) {
+      if (typeof active === 'object') {
+        dropdownTitle = active[displayKey] ? active[displayKey] : title
+      } else {
+        dropdownTitle = active
+      }
+    }
+    if (search && this.state.open) {
       return (
-        <div className='reusable-dropdown-box-search' >
-          <input className='reusable-dropdown-box-search-input' placeholder={this.props.placeholder} type='text' value={this.state.inputText} onChange={e => this.onTextChange(e)} />
-          {this.state.inputText.length > 0 ? <div role='presentation' onClick={e => this.onTextChange(e, '')} className='reusable-dropdown-box-clear'>&#10005;</div> : <div className='reusable-search-icon' />}
+        <div className='reusable-dropdown-search' >
+          <input placeholder={this.props.placeholder} value={this.state.input} autoFocus onChange={this.onTextInput} onKeyDown={e => this.onKeyPress(e)} className='reusable-dropdown-search-input' type='text' />
+          {this.state.input.length > this.props.minLength && <div role='presentation' onClick={this.onSearchClear} className='reusable-dropdown-search-clear' />}
+          {!(this.state.input.length > this.props.minLength) &&<div className="reusable-search icon" />}
         </div>
       )
     }
     return (
-      <div className='reusable-dropdown-box-default' role='presentation' onClick={() => this.setState({ open: !this.state.open })} >
-        {this.props.active ? this.props.active : this.props.title}
-        {this.props.active ? <div role='presentation' onClick={e => this.onChange(e)} className='reusable-dropdown-box-clear'>&#10005;</div> : null}
-      </div>
+      <button onKeyDown={e => this.onKeyPress(e)} onClick={this.onClick} className='reusable-dropdown-box' >
+        <div className='reusable-dropdown-box-title' >{dropdownTitle}</div>
+        {this.props.clear && checkActive && <div role='presentation' onClick={this.onClear} className='reusable-dropdown-box-clear' />}
+      </button>
     )
   }
-  render () {
-    return (
-      <div className='inline' >
-        <ClickOutside onClickOutside={() => this.setState({ open: false })}>
-          <div className='reusable-dropdown'>
-            <div className='reusable-dropdown-box'>
-              {this.renderBox()}
-            </div>
-            {this.state.open ? (
-              <div className='reusable-dropdown-container' >
-                <ul className='reusable-dropdown-container-list' >
-                  {this.renderItems()}
-                </ul>
+
+  render() {
+    const { options, displayKey, valueKey } = this.props
+    if (options.every(item => typeof item !== 'object' || (item[displayKey] && item[valueKey]))) {
+      return (
+        <ClickOutside onClickOutside={this.onClickOutside} >
+          <div className='reusable-dropdown' >
+            {this.renderBox()}
+            {this.state.open &&
+              <div id={this.state.id} ref={(value) => { this.dropdown = value }} className='reusable-dropdown-container' >
+                {this.renderItems()}
               </div>
-            ) : null}
+            }
           </div>
         </ClickOutside>
-      </div>
-    )
+      )
+    }
+    return null
   }
 }
 
 Dropdown.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
-  active: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  onChange: PropTypes.func.isRequired,
-  title: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+    ])
+  ),
+  active: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+  ]),
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   open: PropTypes.bool,
-  placeholder: PropTypes.string,
+  clear: PropTypes.bool,
+  displayKey: PropTypes.string,
+  valueKey: PropTypes.string,
+  search: PropTypes.bool,
   onSearch: PropTypes.func,
-  searchOptions: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   minLength: PropTypes.number,
-  noSearchDataText: PropTypes.string,
-  noDataText: PropTypes.string,
-  noDataSearchText: PropTypes.string
+  loading: PropTypes.bool,
+  loader: PropTypes.node,
+  placeholder: PropTypes.string,
+  searchOptions: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+    ])
+  ),
+  noDataMessage: PropTypes.string,
+  noDataSearchMessage: PropTypes.string,
 }
 
 Dropdown.defaultProps = {
+  onChange: null,
+  options: [],
+  active: null,
   title: 'Select',
   open: false,
-  active: null,
-  placeholder: 'Search',
-  searchOptions: [],
+  clear: false,
+  displayKey: 'display',
+  valueKey: 'value',
+  search: false,
   onSearch: null,
   minLength: 0,
-  noSearchDataText: 'No search data found',
-  noDataText: 'No data found',
-  noDataSearchText: 'Search for options'
+  loading: false,
+  loader: <LoaderComponent />,
+  placeholder: 'Search',
+  searchOptions: [],
+  noDataMessage: 'No data found',
+  noDataSearchMessage: 'No data found'
 }
 
 export default Dropdown

@@ -1,20 +1,13 @@
-export const checkSelected = (value = [], selected = []) => {
-  const mapping = {}
-  for (let i = 0; i < value.length; i += 1) {
-    mapping[value[i]] = false
-    if (selected.indexOf(value[i]) > -1) {
-      mapping[value[i]] = true
-    }
+export function generateRandomString(stringLength = 10) {
+  let randomString = '';
+  let randomAscii;
+  const asciiLow = 65;
+  const asciiHigh = 90
+  for (let i = 0; i < stringLength; i += 1) {
+    randomAscii = Math.floor((Math.random() * (asciiHigh - asciiLow)) + asciiLow);
+    randomString += String.fromCharCode(randomAscii)
   }
-  return mapping
+  return randomString
 }
 
-export const getSelected = (value = {}) => {
-  const selected = []
-  Object.keys(value).forEach((key) => {
-    if (value[key]) {
-      selected.push(key)
-    }
-  })
-  return selected
-}
+export const newInstance = value => JSON.parse(JSON.stringify(value))

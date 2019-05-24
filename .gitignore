@@ -3,3 +3,8 @@ build
 yarn.lock
 yarn-error.log
 package-lock.json
+coverage
+.out
+.cache
+docs
+jest-test-results.json

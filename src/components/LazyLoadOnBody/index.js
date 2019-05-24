@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const LoaderComponent = () => (
-  <div className='reusable-loader' >
-    <div className='reusable-loader-item' />
+  <div className='reusable-lazyload-on-body' >
+    <div className='reusable-lazyload-on-body-item'>Loading...</div>
   </div>
 )
 
@@ -55,7 +55,7 @@ class LazyLoadOnBody extends Component {
 
   render () {
     return (
-      <div>
+      <div className={this.props.className} >
         {this.props.children}
         {!this.state.loadMore ? this.props.loader : null}
       </div>
@@ -64,21 +64,25 @@ class LazyLoadOnBody extends Component {
 }
 
 LazyLoadOnBody.propTypes = {
-  total: PropTypes.number.isRequired,
-  currentTotal: PropTypes.number.isRequired,
+  total: PropTypes.number,
+  currentTotal: PropTypes.number,
   loadMoreRows: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
   footerHeight: PropTypes.number,
-  loader: PropTypes.node
+  loader: PropTypes.node,
+  className: PropTypes.string,
 }
 
 LazyLoadOnBody.defaultProps = {
   children: null,
   footerHeight: 0,
-  loader: <LoaderComponent />
+  loader: <LoaderComponent />,
+  className: '',
+  total: 0,
+  currentTotal: 0
 }
 
 export default LazyLoadOnBody

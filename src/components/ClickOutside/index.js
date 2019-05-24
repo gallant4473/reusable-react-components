@@ -1,52 +1,95 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class ClickOutside extends Component {
-  constructor (props) {
-    super(props)
-    this.getContainer = this.getContainer.bind(this)
-    this.isTouch = false
-    this.handle = this.handle.bind(this)
-  }
+class ClickOutside extends React.Component {
+  static displayName = 'ClickOutside'
 
-  componentDidMount () {
+  container = React.createRef()
+
+  isTouch = false
+
+  componentDidMount() {
     document.addEventListener('touchend', this.handle, true)
     document.addEventListener('click', this.handle, true)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     document.removeEventListener('touchend', this.handle, true)
     document.removeEventListener('click', this.handle, true)
   }
 
-  getContainer (ref) {
-    this.container = ref
+  checkifClickWithinIgnoreBoundary = node => {
+    if (!this.props.ignoreClickWithinElement || !node) {
+      return false
+    }
+    const element = document.querySelector(this.props.ignoreClickWithinElement)
+    if (element) {
+      return element.contains(node)
+    }
+
+    return false
   }
 
-  handle (e) {
-    if (e.type === 'touchend') this.isTouch = true
-    if (e.type === 'click' && this.isTouch) return
+  checkIfClickWithinListenBoundary = node => {
+    if (!this.props.listenClickWithinElement) {
+      return true
+    }
+    const element = document.querySelector(this.props.listenClickWithinElement)
+    if (element) {
+      return element.contains(node)
+    }
+
+    return true
+  }
+
+  handle = e => {
+    if (e.type === 'touchend') {
+      this.isTouch = true
+    }
+    if (e.type === 'click' && this.isTouch) {
+      return
+    }
     const { onClickOutside } = this.props
-    const el = this.container
-    if (!el.contains(e.target)) {
+    const el = this.container.current
+    if (
+      el &&
+      e.target &&
+      !el.contains(e.target) &&
+      this.checkIfClickWithinListenBoundary(e.target) &&
+      !this.checkifClickWithinIgnoreBoundary(e.target)
+    ) {
       onClickOutside(e)
     }
   }
 
-  render () {
-    const { children, onClickOutside, ...props } = this.props
-    return <div {...props} ref={this.getContainer}>{children}</div>
+  render() {
+    const {
+      children,
+      onClickOutside,
+      listenClickWithinElement,
+      ignoreClickWithinElement,
+      ...props
+    } = this.props
+
+    return (
+      <div {...props} ref={this.container}>
+        {children}
+      </div>
+    )
   }
 }
 
 ClickOutside.propTypes = {
+  children: PropTypes.node,
+  ignoreClickWithinElement: PropTypes.string,
+  listenClickWithinElement: PropTypes.string,
   onClickOutside: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
 }
 
 ClickOutside.defaultProps = {
-  children: null
+  children: null,
+  ignoreClickWithinElement: '',
+  listenClickWithinElement: '',
 }
+
+export default ClickOutside

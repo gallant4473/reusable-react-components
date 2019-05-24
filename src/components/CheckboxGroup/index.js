@@ -2,58 +2,103 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class CheckboxGroup extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      active: this.props.active
-    }
-    this.onChange = this.onChange.bind(this)
-  }
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.active !== this.props.active) {
-      this.setState({
-        active: nextProps.active
-      })
-    }
-  }
-  onChange (event) {
-    const { active } = this.state
-    if (event.target.checked) {
-      active.push(event.target.name)
+  static displayName = 'CheckboxGroup'
+
+  onChange = (e, item) => {
+    const { onChange, valueKey } = this.props
+    const active = this.props.active ? this.props.active.slice() : []
+    if (e.target.checked) {
+      active.push(item)
     } else {
-      active.splice(active.indexOf(event.target.name), 1)
+      let index = -1
+      if (typeof item === 'object') {
+        index = active.findIndex(d => d[valueKey] === item[valueKey])
+      } else {
+        index = active.indexOf(item)
+      }
+      active.splice(index, 1)
     }
-    this.props.onChange(active, event)
+    if (onChange) {
+      onChange(active, item)
+    }
   }
-  renderOptions () {
-    return this.props.options.map((item, i) => (
-      <li key={i} className={this.props.inline ? 'inline reusable-checkbox-item' : 'reusable-checkbox-item'} >
-        <input id={`${this.props.id}_${i}`} name={item} type='checkbox' checked={this.state.active.indexOf(item) > -1} onChange={this.onChange} />
-        <label htmlFor={`${this.props.id}_${i}`} className='label' >
-          {item}
-        </label>
-      </li>
-    ))
+
+  renderItems () {
+    const {
+      options, active, id, displayKey, valueKey
+    } = this.props
+    return options.map((item, i) => {
+      const idItem = `${id}_${i}`
+      if (typeof(item) === 'object' && !Array.isArray(item)) {
+        const checkActiveIndex = active.findIndex(a => a[valueKey] === item[valueKey])
+        return (
+          <div key={idItem} className={`reusable-checkbox-group-item ${this.props.itemClassName}`} >
+            <input id={idItem} type='checkbox' checked={checkActiveIndex > -1} onChange={(e) => this.onChange(e, item)} />
+            <label className={`label ${this.props.labelClass}`} htmlFor={idItem} >
+              {item[displayKey]}
+            </label>
+          </div>
+        )
+      }
+      return (
+        <div key={idItem} className={`reusable-checkbox-group-item ${this.props.itemClassName}`} >
+          <input id={idItem} type='checkbox' checked={active.indexOf(item) !== -1} onChange={(e) => this.onChange(e, item)} />
+          <label className={`label ${this.props.labelClass}`} htmlFor={idItem} >
+            {item}
+          </label>
+        </div>
+      )
+    })
   }
+
   render () {
-    return (
-      <ul className='reusable-checkbox' >
-        {this.renderOptions()}
-      </ul>
-    )
+    const { id, options, displayKey, valueKey, className, inline } = this.props
+    if (id && options.every(item => typeof item !== 'object' || (item[displayKey] && item[valueKey]))) {
+      return (
+        <div className={`reusable-checkbox-group ${className} ${inline ? 'inline' : ''}`}>
+          {this.renderItems()}
+        </div>
+      )
+    }
+    return null
   }
 }
 
 CheckboxGroup.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
-  active: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])).isRequired,
-  onChange: PropTypes.func.isRequired,
+  /** Call back function onChange of CheckboxGroup */
+  onChange: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+    ])
+  ),
+  active: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+    ])
+  ),
+  itemClassName: PropTypes.string,
+  className: PropTypes.string,
+  inline: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  inline: PropTypes.bool
+  labelClass: PropTypes.string,
+  displayKey: PropTypes.string,
+  valueKey: PropTypes.string
 }
-
 CheckboxGroup.defaultProps = {
-  inline: false
+  onChange: null,
+  options: [],
+  active: '',
+  itemClassName: '',
+  className: '',
+  inline: false,
+  labelClass: '',
+  displayKey: 'display',
+  valueKey: 'value'
 }
 
 export default CheckboxGroup

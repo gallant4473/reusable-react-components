@@ -1,0 +1,10 @@
+.reusable-lazyload-on-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 100%;
+  &-item {
+    font-size: 15px;
+  }
+}

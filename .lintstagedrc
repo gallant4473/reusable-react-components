@@ -1,0 +1,16 @@
+# NOTE: using YAML because lint-staged package doesn't allow comments in JSON
+
+linters:
+  ./**/*.js:
+    - prettier --write
+    - git add
+
+  src/**/*.{css,scss}:
+    - sass-lint -c .sass-lint.yml --verbose --no-exit
+    - stylelint --fix # may not fix some trivial errors
+    - prettier --write
+    - git add
+
+ignore:
+  - build/
+  - node_modules/

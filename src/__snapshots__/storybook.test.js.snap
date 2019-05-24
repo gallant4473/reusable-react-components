@@ -1,0 +1,850 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Checkbox Group Array of numbers 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    className="reusable-checkbox-group  "
+  >
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-number_0"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-number_0"
+      >
+        1
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-number_1"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-number_1"
+      >
+        2
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={true}
+        id="example-reusable-checkbox-group-number_2"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-number_2"
+      >
+        3
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-number_3"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-number_3"
+      >
+        4
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-number_4"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-number_4"
+      >
+        5
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Checkbox Group Array of objects (Simple) 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    className="reusable-checkbox-group  "
+  >
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={true}
+        id="example-reusable-checkbox-group-object_0"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-object_0"
+      >
+        John Doe
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-object_1"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-object_1"
+      >
+        Meghan Curtis
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-object_2"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-object_2"
+      >
+        Rickey Day
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-object_3"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-object_3"
+      >
+        Joey Wilson
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-object_4"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-object_4"
+      >
+        Pablo Harmon
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Checkbox Group Array of objects with different display and value key 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+/>
+`;
+
+exports[`Storyshots Checkbox Group Array of strings 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    className="reusable-checkbox-group  "
+  >
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={true}
+        id="example-reusable-checkbox-group-string_0"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-string_0"
+      >
+        John Doe
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-string_1"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-string_1"
+      >
+        Meghan Curtis
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-string_2"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-string_2"
+      >
+        Rickey Day
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-string_3"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-string_3"
+      >
+        Joey Wilson
+      </label>
+    </div>
+    <div
+      className="reusable-checkbox-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-checkbox-group-string_4"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-checkbox-group-string_4"
+      >
+        Pablo Harmon
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Array of numbers 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "padding": 10,
+    }
+  }
+>
+  <div>
+    <div
+      className="reusable-dropdown"
+    >
+      <button
+        className="reusable-dropdown-box"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="reusable-dropdown-box-title"
+        >
+          3
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Array of objects (simple) 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "padding": 10,
+    }
+  }
+>
+  <div>
+    <div
+      className="reusable-dropdown"
+    >
+      <button
+        className="reusable-dropdown-box"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="reusable-dropdown-box-title"
+        >
+          John Doe
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Array of objects (with different display and value key) 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "padding": 10,
+    }
+  }
+>
+  <div>
+    <div
+      className="reusable-dropdown"
+    >
+      <button
+        className="reusable-dropdown-box"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="reusable-dropdown-box-title"
+        >
+          Pablo Harmon
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Array of strings 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "padding": 10,
+    }
+  }
+>
+  <div>
+    <div
+      className="reusable-dropdown"
+    >
+      <button
+        className="reusable-dropdown-box"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="reusable-dropdown-box-title"
+        >
+          John Doe
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown Custom search 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "padding": 10,
+    }
+  }
+>
+  <div>
+    <div
+      className="reusable-dropdown"
+    >
+      <button
+        className="reusable-dropdown-box"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="reusable-dropdown-box-title"
+        >
+          John Doe
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Dropdown mock search with api 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "padding": 10,
+    }
+  }
+>
+  <div>
+    <div
+      className="reusable-dropdown"
+    >
+      <button
+        className="reusable-dropdown-box"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="reusable-dropdown-box-title"
+        >
+          John Doe
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Radio Group Array of numbers 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    className="reusable-radio-group  "
+  >
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-number_0"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-number_0"
+      >
+        1
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-number_1"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-number_1"
+      >
+        2
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={true}
+        id="example-reusable-radio-group-number_2"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-number_2"
+      >
+        3
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-number_3"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-number_3"
+      >
+        4
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-number_4"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-number_4"
+      >
+        5
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Radio Group Array of objects (Simple) 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    className="reusable-radio-group  "
+  >
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={true}
+        id="example-reusable-radio-group-object_0"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-object_0"
+      >
+        John Doe
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-object_1"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-object_1"
+      >
+        Meghan Curtis
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-object_2"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-object_2"
+      >
+        Rickey Day
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-object_3"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-object_3"
+      >
+        Joey Wilson
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-object_4"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-object_4"
+      >
+        Pablo Harmon
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Radio Group Array of objects (with different display and value key) 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    className="reusable-radio-group  "
+  >
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-different_0"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-different_0"
+      >
+        John Doe
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-different_1"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-different_1"
+      >
+        Meghan Curtis
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-different_2"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-different_2"
+      >
+        Rickey Day
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-different_3"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-different_3"
+      >
+        Joey Wilson
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={true}
+        id="example-reusable-radio-group-different_4"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-different_4"
+      >
+        Pablo Harmon
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Radio Group Array of strings 1`] = `
+<div
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <div
+    className="reusable-radio-group  "
+  >
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={true}
+        id="example-reusable-radio-group-string_0"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-string_0"
+      >
+        John Doe
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-string_1"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-string_1"
+      >
+        Meghan Curtis
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-string_2"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-string_2"
+      >
+        Rickey Day
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-string_3"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-string_3"
+      >
+        Joey Wilson
+      </label>
+    </div>
+    <div
+      className="reusable-radio-group-item "
+    >
+      <input
+        checked={false}
+        id="example-reusable-radio-group-string_4"
+        onChange={[Function]}
+        type="radio"
+      />
+      <label
+        className="label "
+        htmlFor="example-reusable-radio-group-string_4"
+      >
+        Pablo Harmon
+      </label>
+    </div>
+  </div>
+</div>
+`;
