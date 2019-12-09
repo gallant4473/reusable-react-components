@@ -1,20 +1,15 @@
-import './assets/styles/index.scss'
-import Dropdown from './components/Dropdown'
-import CheckboxGroup from './components/CheckboxGroup'
-import RadioGroup from './components/RadioGroup'
-import ClickOutside from './components/ClickOutside'
-import MultiSelectDropdown from './components/MultiSelectDropdown'
-import Modal from './components/Modal'
-import LazyLoadOnBody from './components/LazyLoadOnBody'
-import LazyLoadOnDiv from './components/LazyLoadOnDiv'
+import RadioGroup from './RadioGroup'
+import CheckboxGroup from './CheckboxGroup'
+import Dropdown from './Dropdown'
+import ClickOutside from './ClickOutside'
+import LazyLoadOnBody from './LazyLoadOnBody'
+import LazyLoadOnDiv from './LazyLoadOnDiv'
 
 export {
-  Dropdown,
-  CheckboxGroup,
   RadioGroup,
+  CheckboxGroup,
+  Dropdown,
   ClickOutside,
-  MultiSelectDropdown,
-  Modal,
   LazyLoadOnBody,
   LazyLoadOnDiv
 }
